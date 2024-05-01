@@ -4,6 +4,14 @@ const connectDatabase = require('./config/database');
 
 
 connectDatabase();
+const app = express();
+app.use(express.json());
+-app.use(express.urlencoded({extended: false }));
+app.use(
+    cors({
+        origin: ["http://localhost:3000", "https://e-commerce-website-kalaitraders.onrender.com"],
+    })
+);
 
 const server = app.listen(process.env.PORT,()=>{
     console.log(`My Server listening to the port: ${process.env.PORT} in  ${process.env.NODE_ENV} `)
